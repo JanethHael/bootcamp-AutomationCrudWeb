@@ -38,7 +38,6 @@ public class BasicSeleniumTest {
         Thread.sleep(1000);
         Assertions.assertTrue(driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).isDisplayed()
                                     ,"ERROR login was incorrect");
-
         // create
         String nameProject="CreateJH"+new Date().getTime();
         driver.findElement(By.xpath("//td[text()='Add New Project']")).click();
@@ -49,17 +48,6 @@ public class BasicSeleniumTest {
         Assertions.assertTrue(actualResult >= 1
                 ,"ERROR The project was not created");
 
-        nameProject="UpdateJH"+new Date().getTime();
-        // update
-        /*driver.findElement(By.xpath("//div[contains(@style,'block')]/img")).click();
-        driver.findElement(By.xpath("//ul[@id=\"projectContextMenu\"]//a[text()='Edit']")).click();
-        driver.findElement(By.xpath("//td/div/input[@id='ItemEditTextbox']")).clear();
-        driver.findElement(By.xpath("//td/div/input[@id='ItemEditTextbox']")).sendKeys(nameProject);
-        driver.findElement(By.xpath("//td/div/img[@id='ItemEditSubmit']")).click();
-        Thread.sleep(1000);
-        actualResult=driver.findElements(By.xpath(" //td[text()='"+nameProject+"'] ")).size();
-        Assertions.assertTrue(actualResult >= 1
-                ,"ERROR The project was not updated");*/
         //Create task
         String nameTask = "Tarea1"+new Date().getTime();
         driver.findElement(By.xpath("//td/textarea[@id='NewItemContentInput']")).sendKeys(nameTask);
@@ -68,17 +56,9 @@ public class BasicSeleniumTest {
         //Update task
         nameTask = "TareaUpdate"+new Date().getTime();
         driver.findElement(By.xpath("//div[contains(@class,'ItemIndicator')]/img")).click();
-        //driver.findElement(By.xpath("//ul[@id=\"projectContextMenu\"]//a[text()='Edit']")).click();
+        driver.findElement(By.xpath("//ul[@id=\"itemContextMenu\"]//a[text()='Edit']")).click();
+        driver.findElement(By.xpath("//td/div[contains(@class,'ItemContentDiv')]")).clear();
+        driver.findElement(By.xpath("//td/div[contains(@class,'ItemContentDiv')]")).sendKeys(nameProject);
 
-        //driver.findElement(By.id("ProjShareMenuDel")).click();
-        //driver.findElement(By.xpath("//div[contains(@style,'block')]/img")).click();
-        // delete
-        /*driver.findElement(By.xpath("//div[contains(@style,'block')]/img")).click();
-        driver.findElement(By.id("ProjShareMenuDel")).click();
-        driver.switchTo().alert().accept();
-        Thread.sleep(1000);
-        actualResult=driver.findElements(By.xpath(" //td[text()='"+nameProject+"'] ")).size();
-        Assertions.assertTrue(actualResult == 0
-                ,"ERROR The project was not removed");*/
     }
 }
